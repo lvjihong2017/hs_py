@@ -1,0 +1,10 @@
+{
+  "png_res": [//123123123注释
+    "./res/1.png",
+    "./res/2.png",
+    "./res/3.png"
+  ],
+  "one_pic_max_times": 5,
+  "one_pic_cd": 0.1,
+  "diff_pic_cd": 2
+}

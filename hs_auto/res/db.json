@@ -1,0 +1,26 @@
+[
+  {
+    "image": "./res/1.png",
+    "confidence": 0.9,
+    "grayscale_bool": true,
+    //    "region": [0, 0, "max", "max"],
+    "one_pic_cd": 0.1,
+    "max_num": 2
+  },
+  {
+    "image": "./res/2.png",
+    "confidence": 0.9,
+    "grayscale_bool": true,
+    //    "region": [0, 0, "max", "max"],
+    "one_pic_cd": 0.1,
+    "max_num": 2
+  },
+  {
+    "image": "./res/3.png",
+    "confidence": 0.9,
+    "grayscale_bool": true,
+    //    "region": [0, 0, "max", "max"],
+    "one_pic_cd": 0.1,
+    "max_num": 2
+  }
+]
