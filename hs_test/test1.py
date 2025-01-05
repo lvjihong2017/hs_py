@@ -1,27 +1,53 @@
-import subprocess
+import tkinter as tk
+from tkinter import ttk
 
-# 定义要启动的程序列表
-programs = [
-    "C:\\Program Files (x86)\\Tencent\\WeChat\\WeChat.exe",
-    "C:\\Program Files\\FxSound LLC\\FxSound\\FxSound.exe",
-]
-# programs = [
-#     "C:\\Program Files (x86)\\Tencent\\WeChat\\WeChat.exe",
-#     "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2021.3.3\\bin\\idea64.exe",
-#     "D:\\Program Files (x86)\\Tencent\\QQMusic\\QQMusic2005.14.05.40\\QQMusic.exe",
-#     "D:\\ProgramData\\Everything-1.4.1.1026.x64\\everything.exe",
-#     "C:\\Program Files (x86)\\DingDing\\DingtalkLauncher.exe",
-#     "C:\\Program Files\\FxSound LLC\\FxSound\\FxSound.exe",
-#     "C:\\Program Files\\Unity Hub\\Unity Hub.exe"
-# ]
 
-# 遍历列表并启动每个程序
-processes = []
-for program in programs:
-    print(program)
-    process = subprocess.Popen([program], creationflags=subprocess.CREATE_NEW_CONSOLE)
-    processes.append(process)
+def add_item(tab_index):
+    item = "abc"
+    listboxes[tab_index].insert(tk.END, item)
 
-# 等待所有程序完成（如果需要）
-for process in processes:
-    process.wait()
+
+def delete_item(tab_index):
+    selected = listboxes[tab_index].curselection()
+    if selected:
+        listboxes[tab_index].delete(selected)
+
+
+def setup_gui():
+    global listboxes
+
+    root = tk.Tk()
+    root.title("Notebook with Listbox Example")
+
+    # 创建 Notebook
+    notebook = ttk.Notebook(root)
+    notebook.pack(padx=10, pady=10, expand=True, fill=tk.BOTH)
+
+    # 创建 3 个页面
+    listboxes = []
+    for i in range(3):  # 假设我们有3个页签
+        frame = ttk.Frame(notebook)
+        notebook.add(frame, text=f"Tab {i + 1}")
+
+        # 在每个页面中创建 Listbox
+        listbox = tk.Listbox(frame)
+        listbox.pack(expand=True, fill=tk.BOTH)
+        listboxes.append(listbox)
+
+        # 向 Listbox 添加初始内容
+        listbox.insert(tk.END, f"Item 1 for Tab {i + 1}")
+        listbox.insert(tk.END, f"Item 2 for Tab {i + 1}")
+        listbox.insert(tk.END, f"Item 3 for Tab {i + 1}")
+
+        # 创建添加和删除按钮
+        btn_add = tk.Button(frame, text="Add Item", command=lambda i=i: add_item(i))
+        btn_add.pack(side=tk.LEFT, padx=5, pady=5)
+
+        btn_delete = tk.Button(frame, text="Delete Item", command=lambda i=i: delete_item(i))
+        btn_delete.pack(side=tk.LEFT, padx=5, pady=5)
+
+    root.mainloop()
+
+
+if __name__ == "__main__":
+    setup_gui()
