@@ -2,6 +2,7 @@ import time
 import tkinter as tk
 from tkinter import filedialog, messagebox, Menu, ttk, simpledialog
 import subprocess
+import sys
 import json
 import os
 
@@ -51,7 +52,10 @@ def open_applications(paths):
             subprocess.Popen(path)
             time.sleep(0.5)
         except Exception as e:
-            messagebox.showerror("Error", f"打开失败: {path}\n{e}")
+            if "740" in str(e):  # 检查错误信息中是否包含 740
+                os.popen(path)
+            else:
+                messagebox.showerror("Error", f"打开失败: {path}\n{e}")
 
 
 # 添加文件并更新列表
